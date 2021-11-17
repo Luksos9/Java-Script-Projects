@@ -97,7 +97,7 @@ const bills = [125, 555, 44, 80, 100]
 
 console.log(calcTip(bills)) */
 
-const jonas = {
+/* const jonas = {
     firstName: 'Jonas',
     lastName: 'Schmedtmann',
     age: 2037 - 1991,
@@ -106,3 +106,88 @@ const jonas = {
 }
 
 console.log(jonas)
+
+console.log(jonas.lastName)
+console.log(jonas['lastName'])
+
+const nameKey = 'Name';
+console.log(jonas['first'+nameKey])
+console.log(jonas)
+
+const userChoice = prompt("What u want to know?")
+console.log(jonas[userChoice])
+
+// adding new properties
+
+jonas.location = 'Portugal'
+jonas['twitter'] = '@jonasschedtman'
+console.log(jonas)
+
+const jonasFriends = {
+    bestFriend: 'Michael',
+    otherFriends: ['Mati', 'Tomi'],
+}
+
+console.log(jonasFriends['bestFriend'], jonasFriends.bestFriend.length + jonasFriends.otherFriends.length) */
+
+
+
+/* const jonas = {
+    firstName: 'Jonas',
+    lastName: 'Schmedtmann',
+    birthYear: 1991,
+    job: 'teacher',
+    kids: ['Michael', 'Peter', 'Steven'],
+    hasDriverLicense: false,
+
+
+    calcAge: function(){
+        this.age = 2037 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function(){
+        return `${this.firstName} is a ${jonas.calcAge()} year old ${this.job} and has\
+        ${this.hasDriverLicense ? 'a': 'no'} drivers license`
+    }
+}
+
+// Challenge
+// 'Jonas is a 46-year old teacher, and he has a driver's license'
+
+
+console.log(jonas.getSummary())
+ */
+
+const mark = {
+    fullName: 'Mark',
+    mass: 78,
+    height: 1.69,
+
+    calcBMI: function() {
+        this.bmi = this.mass / this.height ** 2
+        return this.bmi
+    }
+}
+
+
+const john = {
+    fullName: 'John',
+    mass: 92,
+    height: 1.95,
+
+    calcBMI: function() {
+        this.bmi = this.mass / this.height ** 2
+        return this.bmi
+    }
+}
+
+
+const marksBMI = mark.calcBMI()
+const johnsBMI = john.calcBMI()
+
+function summary (marksBMI, johnsBMI) {
+    return `${marksBMI > johnsBMI ? "Marks BMI is higher": "Johns BMI is higer"}` + `Marks BMI ${marksBMI}, Johns BMI ${johnsBMI}`
+}
+
+console.log(summary(marksBMI, johnsBMI))
