@@ -158,7 +158,7 @@ console.log(jonasFriends['bestFriend'], jonasFriends.bestFriend.length + jonasFr
 
 console.log(jonas.getSummary())
  */
-
+/* 
 const mark = {
     fullName: 'Mark',
     mass: 78,
@@ -190,4 +190,35 @@ function summary (marksBMI, johnsBMI) {
     return `${marksBMI > johnsBMI ? "Marks BMI is higher": "Johns BMI is higer"}` + `Marks BMI ${marksBMI}, Johns BMI ${johnsBMI}`
 }
 
-console.log(summary(marksBMI, johnsBMI))
+console.log(summary(marksBMI, johnsBMI)) */
+
+/* for (let rep = 1; rep <= 10; rep++) {
+    console.log(`okrazenie ${rep}`)
+}
+ */
+
+const jonas = [
+    'Jonas',
+    'Schmedtmann',
+    2037, 1991,
+    'teacher',
+    'Michael',
+    'Peter',
+    'Steven']
+
+/* 
+for (let obj=0; obj<jonas.length; obj++) {
+    console.log(`${jonas[obj]}`)
+} */
+
+
+for(let i=jonas.length-1; i>=0; i--) {
+    console.log(i, jonas[i])
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`-------Starting exercise ${exercise}`);
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Excercise ${exercise}:Lifting weight repetition ${rep} 😎`)
+    }
+}
