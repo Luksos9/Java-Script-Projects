@@ -8,8 +8,6 @@
 
 console.log(`asdad`); */
 
-const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
-
 /* const temperatures1 = [3, -2, -6, -1, 9, 13, 17, 15, 14, 9, 5];
 
 let container = 0;
@@ -40,10 +38,17 @@ const calcTempAplitude = function (templs) {
 };
  */
 
+/* const temperatures1 = [3, -2, -6, -1, 'error'];
+const temperatures2 = [9, 13, 17, 15, 14, 9, 5];
+const temperatures = [];
+temperatures.push(...temperatures1, ...temperatures2);
+console.log(temperatures);
+console.log(Math.max(...temperatures2));
+
 const calcTempAplitude = function (temperatures) {
-  let max = temperatures[0];
-  let min = temperatures[0];
-  for (let i = 1; i < temperatures.length; i++) {
+  let max = -Infinity;
+  let min = Infinity;
+  for (let i = 0; i < temperatures.length; i++) {
     const curTemp = temperatures[i];
     if (typeof curTemp !== 'number') continue;
     if (max < curTemp) {
@@ -58,3 +63,42 @@ const calcTempAplitude = function (temperatures) {
 
 const amplitude = calcTempAplitude(temperatures);
 console.log(amplitude);
+
+// Problem 2, we have more arrays, how to gandle it?
+// answer - just merge them together */
+
+/* const measureKelvin = function () {
+  const measurment = {
+    type: 'temp',
+    unit: 'celsius',
+    value: Number(prompt('Degrees celcius:')),
+  };
+
+  console.log(measurment);
+  console.table(measurment);
+  const kelvin = measurment.value + 273;
+  return kelvin;
+};
+
+// A) Identify the bug
+console.log(measureKelvin());
+ */
+
+const temperatures = [17, 21, 23];
+
+// What is a problem?
+// i have an array and want to display each temperature for each day
+// 1. I have to get position of each element as it will be a day
+// 2. I have to log to console a temp and a day
+
+function printForecast(arr) {
+  let final = ``;
+  for (let i = 0; i < arr.length; i++) {
+    final += `${arr[i]} oC in ${i + 1} days `;
+  }
+  return final;
+}
+
+console.log('heheh');
+console.log(printForecast([17, 21, 23]));
+console.log(printForecast([12, 5, -5, 0, 4]));
