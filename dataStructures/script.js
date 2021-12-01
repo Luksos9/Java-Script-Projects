@@ -83,7 +83,7 @@ const restaurant = {
 
   orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
     console.log(
-      `Deliver of: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be at the time of: ${time} to place ${address}`
+      `Deliver of: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be at the time ${time} to place ${address}`
     );
   },
 };
