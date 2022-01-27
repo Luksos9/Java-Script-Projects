@@ -184,11 +184,7 @@ const updateUI = function (acc) {
 };
 
 const startLogOutTimer = function () {
-  // Set time to 5 minutes
-  let time = 5; // w start with this so when reaches 0 we can logout
-
-  // Call the timer every second
-  const timer = setInterval(function () {
+  const tick = function () {
     // In each call, print the remaining time to UI
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
     const sec = String(time % 60).padStart(2, 0);
@@ -196,17 +192,24 @@ const startLogOutTimer = function () {
     time--;
 
     // When 0 seconds, stop timer and log out user
-    if (time === 0) {
+    if (time < 0) {
       clearInterval(timer);
       labelWelcome.textContent = `Log in to get started`;
       containerApp.style.opacity = 0;
     }
-  }, 1000);
+  };
+  // Set time to 5 minutes
+  let time = 60 * 5; // w start with this so when reaches 0 we can logout
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
 };
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOGGED IN
 /* currentAccount = account1;
@@ -251,7 +254,8 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    startLogOutTimer();
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -282,6 +286,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer); // thats why timer is global variable
+    timer = startLogOutTimer();
   }
 });
 
@@ -300,6 +308,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer); // thats why timer is global variable
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
