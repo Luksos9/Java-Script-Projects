@@ -346,7 +346,22 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(acc, !sorted);
   sorted = !sorted;
 });
+/* This one may be helpful to convert between currencies
+//this is to get the rates from the api
+fetch(`https://api.exchangerate-api.com/v4/latest/USD`)
+.then(res => res.json())
+.then(res => {
+ currencyDataUsd = res.rates;
+ console.log(`rates updated at ${new Date()}`);
+});
 
+
+//this is for calculating the amount for transfer
+amount =
+(amount * currencyDataUsd[recieverAcc.currency]) /
+ currencyDataUsd[currentAccount.currency];
+
+  */
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -477,7 +492,7 @@ const calcDaysPassed = (date1, date2) =>
 
 const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
 console.log(days1); */
-
+/* 
 setTimeout(
   (ing1, ing2) => console.log(`Here is your pizza with ${(ing1, ing2)}`),
   3000,
@@ -495,3 +510,4 @@ setInterval(function () {
   const seconds = now.getSeconds();
   console.log(hours, minutes, seconds);
 }, 1000);
+ */
