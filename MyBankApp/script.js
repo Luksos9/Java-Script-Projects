@@ -37,6 +37,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// Take element that you want to scroll to and use scrollIntoView
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
@@ -54,13 +55,14 @@ btnScrollTo.addEventListener('click', function (e) {
   });
 }); */
 
+// Event delegation (so creation of multiple forEach function is prevented)
 // 1. add event listener to common parent element
 // 2. Determine what element originated the event
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
 
-  // Matching strategy
+  // Matching strategy (if target element contains a class that we want to add listener to)
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href'); // so #section--1 or 2 etc.
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -68,7 +70,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 });
 
 // Tabbed component
-
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
 
@@ -114,34 +115,6 @@ nav.addEventListener('mouseout', function (e) {
 });
 
 // Sticky navigation
-
-/* const initialCoords = section1.getBoundingClientRect();
-
-console.log(initialCoords);
-
-window.addEventListener('scroll', function (e) {
-  console.log(window.scrollY);
-
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
-  else nav.classList.add('sticky');
-}); */
-
-// Sticky navigation: Intersection Observer API
-
-/* const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
-};
-
-const obsOptions = {
-  root: null,
-  treshold: [0, 0.2],
-};
-
-const observer = new IntersectionObserver(obsCallback, obsOptions);
-observer.observe(section1); */
-
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
 
@@ -186,7 +159,7 @@ const loadImg = function (entries, observer) {
 
   // Replace src with data-src
   entry.target.src = entry.target.dataset.src;
-  // entry.target.classList.remove('lazy-img'); - mot best cuz slow
+  // entry.target.classList.remove('lazy-img'); - not best cuz slow
 
   entry.target.addEventListener('load', function () {
     entry.target.classList.remove('lazy-img');

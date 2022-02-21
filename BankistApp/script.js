@@ -7,8 +7,6 @@
 /////////////////////////////////////////////////
 // Data
 
-// DIFFERENT DATA! Contains movement dates, currency and locale
-
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
@@ -262,6 +260,7 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+// Transfer Button
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = +inputTransferAmount.value;
@@ -293,6 +292,7 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+// Loan Button
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -317,6 +317,7 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
+// Close Account Button
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -346,6 +347,7 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(acc, !sorted);
   sorted = !sorted;
 });
+
 /* This one may be helpful to convert between currencies
 //this is to get the rates from the api
 fetch(`https://api.exchangerate-api.com/v4/latest/USD`)
