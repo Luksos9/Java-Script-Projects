@@ -44,7 +44,30 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+// Page navigation
+
+/* document.querySelectorAll('.nav__link').forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = this.getAttribute('href'); // so #section--1 or 2 etc.
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+}); */
+
+// 1. add event listener to common parent element
 // 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href'); // so #section--1 or 2 etc.
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Tabbed component
 
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
@@ -121,11 +144,9 @@ observer.observe(section1); */
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
 
 const stickyNav = function (entries) {
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
@@ -240,11 +261,18 @@ const slider = function () {
     activateDot(curSlide);
   };
 
-  const init = function () {
-    goToSlide(0);
-    createDots();
+  const startTop = function () {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  };
 
-    activateDot(0);
+  // Initialization
+  const init = function () {
+    startTop();
+    goToSlide(0); // start from slide 0
+    createDots();
+    activateDot(0); // filled dot after choose
   };
   init();
 
@@ -266,25 +294,18 @@ const slider = function () {
   });
 };
 slider();
-// Page navigation
 
-/* document.querySelectorAll('.nav__link').forEach(function (el) {
-  el.addEventListener('click', function (e) {
-    e.preventDefault();
-    const id = this.getAttribute('href'); // so #section--1 or 2 etc.
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-  });
-}); */
+// document.addEventListener('DOMContentLoaded', function (e) {
+//   console.log('HTML parsed and DOM tree built!', e);
+// });
 
-// 1. add event listener to common parent element
-// 2. Determine what element originated the event
+// window.addEventListener('load', function (e) {
+//   console.log('Page fully loaded', e);
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  e.preventDefault();
-
-  // Matching strategy
-  if (e.target.classList.contains('nav__link')) {
-    const id = e.target.getAttribute('href'); // so #section--1 or 2 etc.
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-  }
-});
+// // Prompts if user wants to leave site
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
