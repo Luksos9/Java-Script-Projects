@@ -53,7 +53,7 @@ btnScrollTo.addEventListener('click', function (e) {
     const id = this.getAttribute('href'); // so #section--1 or 2 etc.
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   });
-}); */
+}); - not as efficient, because we use forEach to all links */
 
 // Event delegation (so creation of multiple forEach function is prevented)
 // 1. add event listener to common parent element
@@ -125,6 +125,7 @@ const stickyNav = function (entries) {
   else nav.classList.remove('sticky');
 };
 
+// Navigation becomes sticky before 1st section
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
@@ -132,7 +133,7 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
-// Reveal sections
+// Reveal sections (sections will go slightly up)
 const allSections = document.querySelectorAll('.section');
 const revealSection = function (entries, observer) {
   const [entry] = entries;
